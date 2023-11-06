@@ -1,0 +1,27 @@
+*.swp
+
+# Compiled Object files
+obj/
+build/
+
+# Compiled target executable files
+ramulator
+
+*.stats
+
+.vscode/
+
+doc/
+*.log
+
+
+JEDEC_rounding.py
+
+spectraces/
+
+cputraces/
+
+run_scripts/
+
+*.stdout
+*.stats
