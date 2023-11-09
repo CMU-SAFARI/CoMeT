@@ -53,7 +53,7 @@ echo "==========================================================================
 
 echo "==================  Compiling the simulator =================="
 
-${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "cd /app/ && mkdir -p build && sh ./build.sh"
+${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "cd /app/ && mkdir -p build && sh ./build-docker.sh"
 
 
 ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "./app/ramulator"
@@ -63,10 +63,11 @@ ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/
 
 
 
-echo "==================  Decompressing the traces into ./traces =================="
+echo "==================  Decompressing the traces into ./cputraces =================="
 
-wget "Specify path to traces here"
-tar -xzf traces_comet
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-" -O cputraces.tar.bz2 && rm -rf /tmp/cookies.txt
+
+tar -xvf cputraces.tar.bz2
 
 # echo "====================================================================================="
 

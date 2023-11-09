@@ -25,3 +25,6 @@ run_scripts/
 
 *.stdout
 *.stats
+
+.csv
+*.pdf

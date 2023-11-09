@@ -10,7 +10,7 @@ import re
 parser = argparse.ArgumentParser()
 
 # -rd resultsdir -v verbose -s saveSummary 
-parser.add_argument('-r', '--resultsdir', help='Results directory', required=True, default='../../verify-results/')
+parser.add_argument('-r', '--resultsdir', help='Results directory', required=False, default='../../ae-results/')
 parser.add_argument('-v', '--verbose', help='Verbose', action='store_true', default=False)
 parser.add_argument('-s', '--saveSummary', help='save summaries as csv files', action='store_true', default=False)
 
