@@ -137,7 +137,7 @@ configs = [
     "configs/ArtifactEvaluation/CoMeT-k/CoMeT1000-2.yaml",
     "configs/ArtifactEvaluation/CoMeT-k/CoMeT125-2.yaml",
     "configs/ArtifactEvaluation/CoMeT-k/CoMeT250-2.yaml",
-    "configs/ArtifactEvaluation/CoMeT-k/CoMeT500-2.yaml"
+    "configs/ArtifactEvaluation/CoMeT-k/CoMeT500-2.yaml",
 
     ## DEFAULT -- K=3 EXPERIMENTS ##
     "configs/ArtifactEvaluation/CoMeT-k/CoMeT1000-3.yaml",
