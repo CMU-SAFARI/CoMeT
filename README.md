@@ -28,21 +28,23 @@ Tested versions and distributions:
 2) Slurm version: slurm-wlm 21.08.5
 ```
 
-The Docker images contain all the necessary software to compile and run Ramulator experiments, therefore no additional system-level installation step is required.
+> :warning: The Docker images contain all the necessary software to compile and run Ramulator experiments, therefore no additional system-level installation step is required.
 
 ## 2. Installation Guide without Docker:
 
-### Installation steps:
-- Run `./run_artifact_without_docker.sh --[slurm/native]` to install all dependencies, compile Ramulator, fetch CPU traces, and create Slurm jobs/native execution scripts.
+> :warning: Provided `build.sh` script installs all dependencies and automatically run by the `run_artifact_without_docker.sh` script. 
 
-### Prerequisites:
-The following dependencies will be installed: 
+The reader can also install each dependency manually.
+
+### Dependencies :
 - G++ version above 8.4 (tested with 9.4.0 & 11.3.0)
 - CMake 3.10+ (tested with 3.16.3, 3.22.1)
 - Python with pandas, seaborn, and ipython
 
 
 ## 3. Reproducing Key Results for Artifact Evaluation
+
+The following instructions assume the reader is using Docker. If the reader is not using Docker, please refer to the instructions at the end of the section (:fast_forward:).
 
 ### ***Slurm-based execution***
 We strongly suggest using a Slurm-based infrastructure to enable running experiments in bulk. Use the following command to **(1)** fetch the Docker image, **(2)** compile Ramulator inside Docker, **(3)** fetch CPU traces, and **(4)** queue Slurm jobs for experiments. 
@@ -64,6 +66,9 @@ Given that this script will run all experiments simultaneously, the reader can m
 $ ./run_artifact.sh --native docker 
 ```
 This script creates a directory per configuration under the ```ae-results/``` directory to collect statistics of each experiment.
+
+---
+:fast_forward: The reader can also run experiments **without Docker** by using `run_artifact_without_docker.sh` script. This script automatically installs all dependencies, fetches CPU traces. It runs `genrunsp_cluster.py` script and generates all Slurm jobs/bash scripts for native execution given the `--slurm` or `--native` flag. The reader can modify `genrunsp_cluster.py` to comment out some configurations to run a subset of experiments at once.
 
 ### ***Experiment completion***
 
