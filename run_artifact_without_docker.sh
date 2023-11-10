@@ -19,13 +19,13 @@ fi
 
 # CREATE ASCII ART SAYING " CoMeT ARTIFACT"
 # Assuming you have an ASCII art generator command or script
-# ./generate_ascii_art " CoMeT ARTIFACT"
+ ./generate_ascii_art.sh 
 
 echo "==================  Compiling the simulator =================="
 sh ./build.sh
 
 echo "==================  Generating run scripts =================="
-python3 ./genrunsp_cluster.py -wd $PWD -od results -td $PWD/cputraces --exec $execution_mode_arg
+python3 ./genrunsp_cluster.py -wd $PWD -od ae-results -td $PWD/cputraces --exec $execution_mode_arg
 
 # echo "==================  Decompressing the traces into ./cputraces =================="
 # wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-" -O cputraces.tar.bz2 && rm -rf /tmp/cookies.txt

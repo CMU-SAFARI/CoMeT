@@ -1,9 +1,9 @@
-# CoMeT: Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost
+# :comet: CoMeT: Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost
 
 This repository contains the source code of CoMeT, a Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost accepted at HPCA 2024. 
 
 ## 1. Installation Guide with Docker:
-----
+
 ### Software Requirements for Docker-based installation:
 ``` cpp
 - Docker
@@ -30,21 +30,20 @@ Tested versions and distributions:
 
 The Docker images contain all the necessary software to compile and run Ramulator experiments, therefore no additional system-level installation step is required.
 
-## 2. Installation Guide Without Docker:
-----
+## 2. Installation Guide without Docker:
+
+### Installation steps:
+- Run `./run_artifact_without_docker.sh --[slurm/native]` to install all dependencies, compile Ramulator, fetch CPU traces, and create Slurm jobs/native execution scripts.
 
 ### Prerequisites:
+The following dependencies will be installed: 
 - G++ version above 8.4 (tested with 9.4.0 & 11.3.0)
 - CMake 3.10+ (tested with 3.16.3, 3.22.1)
 - Python with pandas, seaborn, and ipython
-- [Optional] Slurm 
 
-### Installation steps:
-- Run `./build.sh` to install all required packages and compile Ramulator
-- Run `./get_cputraces.sh` to fetch CPU traces and place them under `CoMeT_Path/cputraces/`.
 
 ## 3. Reproducing Key Results for Artifact Evaluation
-----
+
 ### ***Slurm-based execution***
 We strongly suggest using a Slurm-based infrastructure to enable running experiments in bulk. Use the following command to **(1)** fetch the Docker image, **(2)** compile Ramulator inside Docker, **(3)** fetch CPU traces, and **(4)** queue Slurm jobs for experiments. 
 
@@ -96,9 +95,12 @@ This command creates the following plots and their related results that are ment
 Our artifact also includes separate Jupyter notebooks to obtain the key figures and results under ```scripts/artifact/```. The reader can also execute all cells in each Jupyter notebook to obtain the same results.
 
 ## 4. Example Usage for Additional Experiments
-----
+
 We provide example configurations under ```configs/```. Any of them can be given to ```ramulator``` combined with a CPU trace (or a set of traces). Please examine a configuration file for possible experiment configurations (e.g., which mechanism to model, which RowHammer threshold to test for, which CPU trace(s) to run, additional mitigation method knobs per mechanism, etc.).
 
 ``` bash
 $ ./ramulator -c configs/CoMeT-k/CoMeT1000-3.yaml # runs ramulator with CoMeT1000-3.yaml config
 ```
+
+## 5. Contact
+Nisa Bostanci (nisa.bostanci [at] safari [dot] ethz [dot] ch)

@@ -36,7 +36,7 @@ else
 fi 
 
 # CREATE ASCII ART SAYING " CoMeT ARTIFACT"
-
+./generate_ascii_art.sh
 
  
 echo "==================  Run a container test to make sure container works =================="
