@@ -34,13 +34,13 @@ The Docker images contain all the necessary software to compile and run Ramulato
 ----
 
 ### Prerequisites:
-- G++ version above 8.4 (tested with 11.3.0)
-- CMake 3.10+ (tested with 3.22.1)
+- G++ version above 8.4 (tested with 9.4.0 & 11.3.0)
+- CMake 3.10+ (tested with 3.16.3, 3.22.1)
 - Python with pandas, seaborn, and ipython
 - [Optional] Slurm 
 
 ### Installation steps:
-- Run `./build.sh` to compile Ramulator
+- Run `./build.sh` to install all required packages and compile Ramulator
 - Run `./get_cputraces.sh` to fetch CPU traces and place them under `CoMeT_Path/cputraces/`.
 
 ## 3. Reproducing Key Results for Artifact Evaluation
