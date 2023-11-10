@@ -1,6 +1,6 @@
 # CoMeT: Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost
 
-This repository contains the source code of CoMeT, a Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost. 
+This repository contains the source code of CoMeT, a Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost accepted at HPCA 2024. 
 
 ## 1. Installation Guide with Docker:
 ----
