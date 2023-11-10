@@ -57,7 +57,7 @@ $ ./run_artifact.sh --slurm docker
 This script creates a directory per configuration under the ```ae-results/``` directory to collect statistics of each experiment.
 
 ### ***Native execution*** 
-Use the following command to **(1)** fetch the Docker image, **(2)** compile Ramulator inside Docker, **(3)** fetch CPU traces, and **(4)** run \textit{all} experiments.
+Use the following command to **(1)** fetch the Docker image, **(2)** compile Ramulator inside Docker, **(3)** fetch CPU traces, and **(4)** run all experiments.
 
 Given that this script will run all experiments simultaneously, the reader can modify ```genrunsp_docker.py``` to comment out some configurations to run a subset of experiments at once.
 
