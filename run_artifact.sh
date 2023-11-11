@@ -58,6 +58,8 @@ ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/
 
 ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "./app/ramulator"
 
+echo "====================================================================================="
+echo "=============  Generating the run scripts (this may take a while) ==================="
 
 ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "python3 /app/genrunsp_docker.py ${PWD} ${execution_mode_arg}" 
 
@@ -69,9 +71,8 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 
 tar -xvf cputraces.tar.bz2
 
-# echo "====================================================================================="
-
-# echo "==================  Launching experiments =================="
+echo "====================================================================================="
+echo "==============================  Launching experiments  =============================="
 sh ./run.sh 
 
 

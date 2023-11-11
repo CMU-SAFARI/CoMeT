@@ -366,11 +366,16 @@ def generateExecutionSetup(ramulator_dir, output_dir, trace_dir, config, workloa
     )
 
     if (execution_mode == "--native"):
+        of_name =output_dir + '/' + bare_config + '/' + prog_list + '/output.txt'
+        ef_name =output_dir + '/' + bare_config + '/' + prog_list + '/error.txt'
         temp = SBATCH_CMD.split("docker_wrapper.sh")[1]
-        SBATCH_CMD = "./docker_wrapper.sh " + temp
-        print(SBATCH_CMD)
+        SBATCH_CMD = "echo \"Running: " + bare_config + " " + prog_list +"\" & ./docker_wrapper.sh " + temp + ' > ' + of_name + ' 2> ' + ef_name
+        #print(SBATCH_CMD)
 
     os.system('mkdir -p ' + output_dir + '/' + bare_config + '/' + prog_list)
+
+    # add write permission to the output file
+    os.system('chmod uog+wr ' + output_dir + '/' + bare_config + '/' + prog_list)
 
     f = open("/app/run_scripts/" +
              bare_config + '-' + prog_list + '.sh', 'w')
