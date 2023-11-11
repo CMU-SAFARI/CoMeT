@@ -21,7 +21,7 @@ SBATCH_COMMAND_LINE = "\
 
 # the script executed by the command line slurm executes
 BASE_COMMAND_LINE = "\
-    {ramulator_dir}/ramulator "
+    /app/ramulator "
 
 # nRH sweep all mechanisms
 configs = [
@@ -378,12 +378,15 @@ def generateExecutionSetup(ramulator_dir, output_dir, trace_dir, config, workloa
     f.write(CMD)
     f.close()
 
+    # chmod +x /app/run_scripts/{config_name}{config_extension}-{workload}.sh
+    os.system('chmod uog+x /app/run_scripts/' +
+              bare_config + '-' + prog_list + '.sh')
     return SBATCH_CMD
 
 
 ramulator_dir = '.'
-output_dir = comet_path+'/ae-results'
-trace_dir = comet_path+'/cputraces'
+output_dir = '/app/ae-results'
+trace_dir = '/app/cputraces'
 
 # remove scripts
 os.system('rm -r ' + "/app/"+"run_scripts")
