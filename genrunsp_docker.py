@@ -11,13 +11,14 @@ BASH_HEADER = "#!/bin/bash\n"
 # the command line slurm will execute
 comet_path = sys.argv[1]
 execution_mode = sys.argv[2]
+container = sys.argv[3]
 
 SBATCH_COMMAND_LINE = "\
     sbatch --cpus-per-task=1 --nodes=1 --ntasks=1 \
     --output={output_file_name} \
     --error={error_file_name} \
     --job-name='{job_name}' \
-    ./docker_wrapper.sh \"docker run --rm -v '{comet_dir}':/app/ docker.io/richardluo831/cpp-dev:latest /app/run_scripts/{config_name}{config_extension}-{workload}.sh\""
+    ./docker_wrapper.sh \"{container} run --rm -v '{comet_dir}':/app/ docker.io/richardluo831/cpp-dev:latest /app/run_scripts/{config_name}{config_extension}-{workload}.sh\""
 
 # the script executed by the command line slurm executes
 BASE_COMMAND_LINE = "\
@@ -331,7 +332,8 @@ def generateExecutionSetup(ramulator_dir, output_dir, trace_dir, config, workloa
         job_name='{job_name}',
         config_name=bare_config,
         workload='{workload}',
-        comet_dir=comet_path
+        comet_dir=comet_path,
+        container=container
     )
 
     prog_list = ""
@@ -359,8 +361,8 @@ def generateExecutionSetup(ramulator_dir, output_dir, trace_dir, config, workloa
     CMD += "\"" + yaml.dump(ramulator_config) + "\""
 
     SBATCH_CMD = SBATCH_CMD.format(
-        output_file_name=output_dir + '/' + bare_config + '/' + prog_list + '/output.txt',
-        error_file_name=output_dir + '/' + bare_config + '/' + prog_list + '/error.txt',
+        output_file_name= comet_path + '/ae-results/' + bare_config + '/' + prog_list + '/output.txt',
+        error_file_name= comet_path + '/ae-results/' + bare_config + '/' + prog_list + '/error.txt',
         job_name=prog_list,
         workload=prog_list
     )

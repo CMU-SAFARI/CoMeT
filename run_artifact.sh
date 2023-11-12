@@ -61,7 +61,7 @@ ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/
 echo "====================================================================================="
 echo "=============  Generating the run scripts (this may take a while) ==================="
 
-${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "python3 /app/genrunsp_docker.py ${PWD} ${execution_mode_arg}" 
+${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "python3 /app/genrunsp_docker.py ${PWD} ${execution_mode_arg} ${container}" 
 
 
 
