@@ -64,12 +64,17 @@ echo "=============  Generating the run scripts (this may take a while) ========
 ${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "python3 /app/genrunsp_docker.py ${PWD} ${execution_mode_arg} ${container}" 
 
 
-
+# check if cputraces/ directory is empty
+if [ "$(ls -A cputraces/)" ]; then
+  echo "==================  cputraces/ directory is not empty =================="
+else
+  echo "==================  cputraces/ directory is empty =================="
+  echo "==================  Downloading the traces into ./cputraces =================="
+  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-" -O cputraces.tar.bz2 && rm -rf /tmp/cookies.txt
 echo "==================  Decompressing the traces into ./cputraces =================="
 
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=18BAvuQybyKT-RRHeAUFOsMAttG4xWlj-" -O cputraces.tar.bz2 && rm -rf /tmp/cookies.txt
-
-tar -xvf cputraces.tar.bz2
+  tar -xvf cputraces.tar.bz2
+fi
 
 echo "====================================================================================="
 echo "==============================  Launching experiments  =============================="
