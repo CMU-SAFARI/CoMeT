@@ -10,7 +10,7 @@ import re
 parser = argparse.ArgumentParser()
 
 # -rd resultsdir -v verbose -s saveSummary 
-parser.add_argument('-r', '--resultsdir', help='Results directory', required=False, default='../../ae-results/')
+parser.add_argument('-r', '--resultsdir', help='Results directory', required=False, default='../../../ae-results/')
 parser.add_argument('-v', '--verbose', help='Verbose', action='store_true', default=False)
 parser.add_argument('-s', '--saveSummary', help='save summaries as csv files', action='store_true', default=False)
 
@@ -18,6 +18,10 @@ args = parser.parse_args()
 
 resultsdir = args.resultsdir # This needs to be updated if the results are not in the same directory 
 print('[INFO] Reading results from: {}'.format(resultsdir))
+print('[INFO] Plots and results will be saved to: ./plots/')
+# create plots directory
+if not os.path.exists('plots'):
+    os.makedirs('plots')
 
 print('[INFO] Plotting single-core performance evaluation plots.')
 
@@ -253,7 +257,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-singlecore.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-singlecore.pdf', bbox_inches='tight')
 
 print('[INFO] Plot available: comet-singlecore.pdf (Figure 8)')
 
@@ -263,7 +267,7 @@ stats_copy = stats.copy()
 print('[INFO] Printing single-core performance numbers to singlecore-performance-numbers.txt')
 
 # redirect stdout to a file
-sys.stdout = open('singlecore-performance-numbers.txt', 'w')
+sys.stdout = open('plots/singlecore-performance-numbers.txt', 'w')
 
 print("====\nnRH=1k, CoMeT\'s AVERAGE Performance Overhead (%):")
 print((1-(stats_clean[(stats_clean['config']=='CoMeT1000') & (stats_clean['nrh']==1000) & (stats_clean['workload']=='GeoMean')]['ramulator.normalized_ipc'].values[0]))*100)
@@ -513,7 +517,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-singlecore-comparison.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-singlecore-comparison.pdf', bbox_inches='tight')
 print('[INFO] Plot available: comet-singlecore-comparison.pdf (Figure 10)')
 
 if args.saveSummary:
@@ -523,7 +527,7 @@ if args.saveSummary:
 print('[INFO] Printing single-core performance comparison numbers to singlecore-comparison-numbers.txt')
 
 # redirect stdout to a file
-sys.stdout = open('singlecore-comparison-numbers.txt', 'w')
+sys.stdout = open('plots/singlecore-comparison-numbers.txt', 'w')
 
 stats_copy = stats.copy()
 stats = stats_new.copy()
@@ -739,7 +743,7 @@ stats_full = stats.copy()
 print('[INFO] Printing single-core energy numbers to singlecore-energy-numbers.txt')
 
 # redirect stdout to a file
-sys.stdout = open('singlecore-energy-numbers.txt', 'w')
+sys.stdout = open('plots/singlecore-energy-numbers.txt', 'w')
 
 
 # print the number of workloads per config and nrh
@@ -809,7 +813,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-singlecore-energy.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-singlecore-energy.pdf', bbox_inches='tight')
 print('[INFO] Plot available: comet-singlecore-energy.pdf (Figure 9)')
 
 if args.saveSummary:
@@ -876,7 +880,7 @@ ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.2), ncol=5, fancybox=False,
 
 plt.tight_layout()
 # save figure
-fig.savefig('comet-singlecore-energy-comparison.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-singlecore-energy-comparison.pdf', bbox_inches='tight')
 if args.saveSummary:
     # export data to csv
     stats_no_baseline.to_csv('singlecore-energy-comparison-fullresults.csv', index=False)
@@ -885,7 +889,7 @@ print('[INFO] Plot available: comet-singlecore-energy-comparison.pdf (Figure 11)
 print('[INFO] Printing single-core energy comparison numbers to singlecore-energy-comparison-numbers.txt')
 
 # redirect stdout to a file
-sys.stdout = open('singlecore-energy-comparison-numbers.txt', 'w')
+sys.stdout = open('plots/singlecore-energy-comparison-numbers.txt', 'w')
 comet_1k= stats_no_baseline[(stats_no_baseline['nrh'] == 1000) & (stats_no_baseline['config'] == 'CoMeT')]['normalized_energy'].mean()
 comet_125= stats_no_baseline[(stats_no_baseline['nrh'] == 125) & (stats_no_baseline['config'] == 'CoMeT')]['normalized_energy'].mean()
 
@@ -1148,7 +1152,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-k-evaluation.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-k-evaluation.pdf', bbox_inches='tight')
 if args.saveSummary:
     # export data to csv
     stats_new.to_csv('comet-k-evaluation-fullresults.csv', index=False)
@@ -1158,7 +1162,7 @@ print('[INFO] Plot available: comet-k-evaluation.pdf (Figure 17)')
 print('[INFO] Printing k-evaluation numbers to k-evaluation-numbers.txt')
 
 # redirect stdout to a file
-sys.stdout = open('k-evaluation-numbers.txt', 'w')
+sys.stdout = open('plots/k-evaluation-numbers.txt', 'w')
 print("Nothing to see here yet.")
 
 # redirect stdout back to terminal
@@ -1374,7 +1378,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-ctsweep-1k.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-ctsweep-1k.pdf', bbox_inches='tight')
 if args.saveSummary:
     # export data to csv
     stats_no_baseline.to_csv('comet-ctsweep-1k.csv', index=False)
@@ -1591,7 +1595,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-ctsweep-125.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-ctsweep-125.pdf', bbox_inches='tight')
 if args.saveSummary:
     # export data to csv
     stats_no_baseline.to_csv('cometsweep125.csv', index=False)
@@ -1812,7 +1816,7 @@ plt.tight_layout()
 plt.show()
 
 # save figure
-fig.savefig('comet-ratsweep.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-ratsweep.pdf', bbox_inches='tight')
 if args.saveSummary:
     # export data to csv
     stats_no_baseline.to_csv('comet-ratsweep.csv', index=False)
@@ -1970,13 +1974,13 @@ ax.lines[0].set_color('black')  # Set the color of the whiskers\
 
 plt.tight_layout()
 # save figure
-fig.savefig('comet-motiv.pdf', bbox_inches='tight')
+fig.savefig('plots/comet-motiv.pdf', bbox_inches='tight')
 
 print('[INFO] Plot available: comet-motiv.pdf (Figure 3)')
 print('[INFO] Printing the numbers for the paper to motiv-results.txt')
 
 # direct stdout to file
-sys.stdout = open('motiv-results.txt', 'w')
+sys.stdout = open('plots/motiv-results.txt', 'w')
 
 geometric_mean = stats.groupby(['config','nrh'])['ramulator.normalized_ipc'].apply(lambda x: x.prod()**(1.0/len(x))).reset_index()
 geometric_mean['workload'] = 'GeoMean'
