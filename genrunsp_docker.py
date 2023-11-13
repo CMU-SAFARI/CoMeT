@@ -18,7 +18,7 @@ SBATCH_COMMAND_LINE = "\
     --output={output_file_name} \
     --error={error_file_name} \
     --job-name='{job_name}' \
-    ./docker_wrapper.sh \"{container} run --rm -v '{comet_dir}':/app/ docker.io/richardluo831/cpp-dev:latest /app/run_scripts/{config_name}{config_extension}-{workload}.sh\""
+    ./docker_wrapper.sh \"{container} run --rm -v '{comet_dir}':/app/ docker.io/nisabostanci/comet-image:latest /app/run_scripts/{config_name}{config_extension}-{workload}.sh\""
 
 # the script executed by the command line slurm executes
 BASE_COMMAND_LINE = "\

@@ -47,21 +47,21 @@ echo "==========================================================================
 
 echo "==================  Pulling the Docker image to run the experiments =================="
 
-${container}  pull docker.io/richardluo831/cpp-dev:latest
+${container}  pull docker.io/nisabostanci/comet-image:latest
 
 echo "====================================================================================="
 
-echo "==================  Compiling the simulator =================="
+echo "==============================  Compiling the simulator ============================="
 
-${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "cd /app/ && mkdir -p build && sh ./build-docker.sh"
+${container} run --rm -v $PWD:/app/ docker.io/nisabostanci/comet-image:latest /bin/bash -c "cd /app/ && mkdir -p build && sh ./build-docker.sh"
 
 
-${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "./app/ramulator"
+${container} run --rm -v $PWD:/app/ docker.io/nisabostanci/comet-image:latest/bin/bash -c "./app/ramulator"
 
 echo "====================================================================================="
 echo "=============  Generating the run scripts (this may take a while) ==================="
 
-${container} run --rm -v $PWD:/app/ docker.io/richardluo831/cpp-dev:latest /bin/bash -c "python3 /app/genrunsp_docker.py ${PWD} ${execution_mode_arg} ${container}" 
+${container} run --rm -v $PWD:/app/ docker.io/nisabostanci/comet-image:latest /bin/bash -c "python3 /app/genrunsp_docker.py ${PWD} ${execution_mode_arg} ${container}" 
 
 
 # check if cputraces/ directory is empty
