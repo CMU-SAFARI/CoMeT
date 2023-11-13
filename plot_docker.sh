@@ -16,12 +16,12 @@ echo "==========================================================================
 
 echo "==================  Pulling the Docker image to create plots =================="
 
-${container} pull docker.io/kanell21/artifact_evaluation:victima_ptwcp_v1.1
+${container} pull docker.io/nisabostanci/comet-plots:latest
 
 echo "================================================================================"
 echo "==================  Creating Plots =================="
 pwd
-${container} run --rm -v $PWD:/app/ docker.io/kanell21/artifact_evaluation:victima_ptwcp_v1.1 /bin/bash -c "python3 -W ignore  scripts/artifact/fast-forward/create_all_plots.py -r ae-results/"
+${container} run --rm -v $PWD:/app/ docker.io/nisabostanci/comet-plots:latest /bin/bash -c "python3 -W ignore  scripts/artifact/fast-forward/create_all_plots.py -r ae-results/"
 
 echo "================================================================================"
 echo "==================  Plots and Results  =================="

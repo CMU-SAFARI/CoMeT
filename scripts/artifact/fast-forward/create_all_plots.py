@@ -542,7 +542,7 @@ hydra_125 = (stats[(stats['config']=='Hydra') & (stats['nrh']==125) & (stats['wo
 rega_125 = (stats[(stats['config']=='REGA') & (stats['nrh']==125)& (stats['workload']=='GeoMean')]['ramulator.normalized_ipc'])
 para_125 = ((stats[(stats['config']=='PARA') & (stats['nrh']==125) & (stats['workload']=='GeoMean')]['ramulator.normalized_ipc']))
 
-print("nRH=125, REGA performance overhead (%): " + str((1-(rega_125.values[0]))*100))
+#print("nRH=125, REGA performance overhead (%): " + str((1-(rega_125.values[0]))*100))
 # get the normalized ipc value of comet_1k
 print("nRH=1k, CoMeT/Graphene (%): " + str((1-(comet_1k.values[0]/graphene_1k.values[0]))*100))
 print("nRH=125, CoMeT/Graphene (%): " + str((1-(comet_125.values[0]/graphene_125.values[0]))*100))
@@ -550,23 +550,24 @@ print("nRH=125, CoMeT/Graphene (%): " + str((1-(comet_125.values[0]/graphene_125
 c125 = stats[(stats['config']=='CoMeT') & (stats['nrh']==1000) & (stats['workload']=='GeoMean')]['ramulator.normalized_ipc']
 h125 = stats[(stats['config']=='Hydra') & (stats['nrh']==1000) & (stats['workload']=='GeoMean')]['ramulator.normalized_ipc']
 #print('------\nCoMeT nrh=1k AVERAGE Performance Overhead:\n' + str((1-c125.values[0])*100))
-print('nrh=1k, Hydra AVERAGE Performance Overhead (%):' + str((1-h125.values[0])*100))
+print('nrh=1k, Hydra over CoMeT (%):' + str((1-h125.values[0]/c125.values[0])*100))
 
 c125 = stats[(stats['config']=='CoMeT') & (stats['nrh']==125) & (stats['workload']=='GeoMean')]['ramulator.normalized_ipc']
 h125 = stats[(stats['config']=='Hydra') & (stats['nrh']==125) & (stats['workload']=='GeoMean')]['ramulator.normalized_ipc']
 #print('------\nCoMeT nrh=125 AVERAGE Performance Overhead:\n' + str((1-c125.values[0])*100))
-print('nrh=125, Hydra AVERAGE Performance Overhead (%):' + str((1-h125.values[0])*100))
+print('nrh=125, Hydra over CoMeT (%):' + str((1-h125.values[0]/c125.values[0])*100))
 
 
 comet_w_15 = ((stats[(stats['config']=='CoMeT')& (stats['nrh']==125) ]['ramulator.normalized_ipc'].min()))
 hydra_w_15 = ((stats[(stats['config']=='Hydra')& (stats['nrh']==125) ]['ramulator.normalized_ipc'].min()))
 #print('CoMeT min normalized ipc: ' + str(comet_w_15))
 #print('Hydra min normalized ipc: ' + str(hydra_w_15))
-print('Hydra/CoMeT: ' + str((1-hydra_w_15/comet_w_15)*100))
+print('Maximum Slowdown of Hydra/CoMeT (nRH=125): ' + str((1-hydra_w_15/comet_w_15)*100))
 
 preventive_refresh_125 = (stats[(stats['config']=='Graphene')& (stats['nrh'] == 125)]['ramulator.preventive_refreshes_channel_0_core']).mean()
 preventive_refresh_1k = (stats[(stats['config']=='Graphene')& (stats['nrh'] == 1000)]['ramulator.preventive_refreshes_channel_0_core']).mean()
 #print("Preventive refresh for Graphene: ", preventive_refresh_125)
+print("::::::::More stats::::::")
 preventive_refresh_125_comet = (stats[(stats['config']=='CoMeT') & (stats['nrh'] == 125)]['ramulator.preventive_refreshes_channel_0_core']).mean()
 print("Preventive refresh for CoMeT125 (normalized to Graphene): ", (preventive_refresh_125_comet/preventive_refresh_125-1)*100)
 preventive_refresh_1k_comet = (stats[(stats['config']=='CoMeT') & (stats['nrh'] == 1000)]['ramulator.preventive_refreshes_channel_0_core']).mean()
@@ -896,11 +897,11 @@ comet_125= stats_no_baseline[(stats_no_baseline['nrh'] == 125) & (stats_no_basel
 graphene_1k = stats_no_baseline[(stats_no_baseline['nrh'] == 1000) & (stats_no_baseline['config'] == 'Graphene')]['normalized_energy'].mean()
 graphene_125 = stats_no_baseline[(stats_no_baseline['nrh'] == 125) & (stats_no_baseline['config'] == 'Graphene')]['normalized_energy'].mean()
 
-print('Graphene 1k: ', (graphene_1k-1)*100)
-print('Graphene 125: ', (graphene_125-1)*100)
+#print('Graphene 1k: ', (graphene_1k-1)*100)
+#print('Graphene 125: ', (graphene_125-1)*100)
 
-print('CoMeT 1k / Graphene 1k: ', ((comet_1k / graphene_1k)-1)*100)
-print('CoMeT 125 / Graphene 125: ', ((comet_125 / graphene_125)-1)*100)
+print('CoMeT over Graphene (nRH=1k): ', ((comet_1k / graphene_1k)-1)*100)
+print('CoMeT over Graphene (nRH=125): ', ((comet_125 / graphene_125)-1)*100)
 
 rega_1k = stats_no_baseline[(stats_no_baseline['nrh'] == 1000) & (stats_no_baseline['config'] == 'REGA')]['normalized_energy'].mean()
 rega_125 = stats_no_baseline[(stats_no_baseline['nrh'] == 125) & (stats_no_baseline['config'] == 'REGA')]['normalized_energy'].mean()
@@ -911,11 +912,11 @@ para_125 = stats_no_baseline[(stats_no_baseline['nrh'] == 125) & (stats_no_basel
 hydra_1k = stats_no_baseline[(stats_no_baseline['nrh'] == 1000) & (stats_no_baseline['config'] == 'Hydra')]['normalized_energy'].mean()
 hydra_125 = stats_no_baseline[(stats_no_baseline['nrh'] == 125) & (stats_no_baseline['config'] == 'Hydra')]['normalized_energy'].mean()
 
-print('Hydra 1k: ', (hydra_1k-1)*100)
-print('Hydra 125: ', (hydra_125-1)*100)
+#print('Hydra 1k: ', (hydra_1k-1)*100)
+#print('Hydra 125: ', (hydra_125-1)*100)
 
-print('Hydra_1k / CoMeT_1k: ', ((hydra_1k / comet_1k)-1)*100)
-print('Hydra_125 / CoMeT_125: ', ((hydra_125 / comet_125)-1)*100)
+print('Hydra over CoMeT nRH=1k: ', ((hydra_1k / comet_1k)-1)*100)
+print('Hydra over CoMeT nRH=125: ', ((hydra_125 / comet_125)-1)*100)
 
 # redirect stdout back to terminal
 sys.stdout = sys.__stdout__
