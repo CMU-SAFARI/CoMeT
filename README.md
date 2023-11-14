@@ -1,3 +1,7 @@
+<p align="center"> 
+<a href="https://doi.org/10.5281/zenodo.10120298"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10120298.svg" alt="DOI"></a>
+</p>
+
 # :comet: CoMeT: Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost
 
 This repository contains the source code of CoMeT, a Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost accepted at HPCA 2024. 
