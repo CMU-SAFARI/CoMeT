@@ -1,7 +1,6 @@
 #include "RefreshBasedDefense.h"
 #include "PARA.h"
 #include "Graphene.h"
-#include "SPR.h"
 #include "Hydra.h"
 #include "Paragraph.h"
 #include "CoMeT.h"
@@ -26,8 +25,6 @@ namespace Ramulator{
       rbd = new PARA<T>(rbd_config, ctrl);
     else if (rbd_type == "Graphene")
       rbd = new Graphene<T>(rbd_config, ctrl);
-    else if (rbd_type == "SPR")
-      rbd = new SPR<T>(rbd_config, ctrl);
     else if (rbd_type == "Hydra")
       rbd = new Hydra<T>(rbd_config, ctrl);
     else if (rbd_type == "Paragraph")
