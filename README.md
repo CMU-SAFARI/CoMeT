@@ -4,12 +4,27 @@
 
 # :comet: CoMeT: Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost
 
-This repository contains the source code of CoMeT, a Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost accepted at HPCA 2024. 
+This repository contains the source code of CoMeT, our [HPCA'24 paper](https://arxiv.org/pdf/2402.18769.pdf). 
+
+CoMeT is a new RowHammer mitigation mechanism, that prevents RowHammer bitflips with low area, performance, and energy costs in DRAM-based systems at very low RowHammer thresholds. The key idea of CoMeT is to use low-cost and scalable hash-based counters to track DRAM rows and thus, reduce the overhead of expensive tag-based counters.
+
+> F. Nisa Bostanci, Ismail Emir Yuksel, Ataberk Olgun, Konstantinos Kanellopoulos, Yahya Can Tugrul, A. Giray Yaglikci, Mohammad Sadrosadati, and Onur Mutlu. "CoMeT: Count-Min-Sketch-based Row Tracking to Mitigate RowHammer at Low Cost", HPCA 2024.
+
+Please use the following citation to cite CoMeT if the repository is useful for you.
+
+```
+@inproceedings{bostanci2024comet,
+  title={{CoMeT: Count-Min-Sketch-based Row Tracking to Mitigate RowHammer at Low Cost}},
+  author={F. Nisa Bostanci, Ismail Emir Yuksel, Ataberk Olgun, Konstantinos Kanellopoulos, Yahya Can Tugrul, A. Giray Yaglikci, Mohammad Sadrosadati, and Onur Mutlu},
+  booktitle={HPCA},
+  year={2024}
+}
+```
 
 ## 1. Installation Guide with Docker:
 
 ### Software Requirements for Docker-based installation:
-``` cpp
+``` 
 - Docker
 - curl
 - tar
@@ -90,11 +105,11 @@ This script pulls a Docker image with the Python dependencies. It then plots all
 
 This command creates the following plots and their related results that are mentioned in the paper:
 
-1. ```comet-singlecore.pdf```: Figure 8
-2. ```comet-singlecore-energy.pdf```: Figure 9
-3. ```comet-singlecore-comparison.pdf```: Figure 10
-4. ```comet-singlecore-energy-comparison.pdf```: Figure 11
-5. ```comet-k-evaluation.pdf```: Figure 17
+1. ```comet-singlecore.pdf```: Figure 10
+2. ```comet-singlecore-energy.pdf```: Figure 11
+3. ```comet-singlecore-comparison.pdf```: Figure 12
+4. ```comet-singlecore-energy-comparison.pdf```: Figure 13
+5. ```comet-k-evaluation.pdf```: Figure 9
 6. ```comet-motiv.pdf```: Figure 3
 7. ```comet-ctsweep-1k.pdf```: Figure 6a
 8. ```comet-ctsweep-125.pdf```: Figure 6b
