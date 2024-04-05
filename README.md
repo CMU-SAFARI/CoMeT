@@ -1,8 +1,14 @@
-<p align="center"> 
-<a href="https://doi.org/10.5281/zenodo.10120298"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10120298.svg" alt="DOI"></a>
-</p>
 
 # :comet: CoMeT: Count-Min Sketch-based Aggressor Row Tracking to Mitigate RowHammer at Low Cost
+
+<p align=center>
+<a href="https://doi.org/10.5281/zenodo.10120298"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10120298.svg" alt="DOI"></a>
+<img src="https://img.shields.io/badge/Origin-Academic%20Code-C1ACA0.svg" alt="Academic Code">
+<a href="https://isocpp.org/std/the-standard"><img src="https://img.shields.io/badge/Made%20with-C/C++-blue.svg" alt="Language Badge"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<img src="https://img.shields.io/badge/Contributions-welcome-lightgray.svg" alt="Contributions Welcome">
+<a href="https://arxiv.org/pdf/2402.18769.pdf"><img src="https://img.shields.io/badge/cs.AR-2402.18769-b31b1b?logo=arxiv&logoColor=red" alt="Preprint: arXiv"> </a>
+</p>
 
 This repository contains the source code of CoMeT, our [HPCA'24 paper](https://arxiv.org/pdf/2402.18769.pdf). 
 
